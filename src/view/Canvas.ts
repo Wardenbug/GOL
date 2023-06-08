@@ -7,11 +7,15 @@ class Canvas extends View {
   public height: number;
   private canvas: HTMLCanvasElement;
 
+  static CELL_SIZE = 20;
+
   constructor(width: number, height: number, canvasElement: HTMLCanvasElement) {
     super();
     this.width = width;
     this.height = height;
     this.canvas = canvasElement;
+    this.canvas.width = width * Canvas.CELL_SIZE
+    this.canvas.height = height * Canvas.CELL_SIZE
 
     // this.canvas.addEventListener("mousemove", this.getCursorPosition);
   }
@@ -26,11 +30,16 @@ class Canvas extends View {
 
     const ctx = this.canvas.getContext("2d");
     if (ctx) {
-      for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
+      for (let i = 0; i < this.height; i++) {
+        for (let j = 0; j < this.width; j++) {
           if (j === xC && yC === i) {
             ctx.fillStyle = "red";
-            ctx.fillRect(20 * j + 2, 20 * i + 2, 16, 16);
+            ctx.fillRect(
+              Canvas.CELL_SIZE * j + 2,
+              Canvas.CELL_SIZE * i + 2,
+              Canvas.CELL_SIZE - 4,
+              Canvas.CELL_SIZE - 4
+            );
           }
         }
       }
@@ -47,12 +56,22 @@ class Canvas extends View {
   render = (grid: Grid) => {
     const ctx = this.canvas.getContext("2d");
     if (ctx) {
-      for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < 10; j++) {
+      for (let i = 0; i < this.height; i++) {
+        for (let j = 0; j < this.width; j++) {
           ctx.fillStyle = "black";
-          ctx.fillRect(20 * j, 20 * i, 20, 20);
+          ctx.fillRect(
+            Canvas.CELL_SIZE * j,
+            Canvas.CELL_SIZE * i,
+            Canvas.CELL_SIZE,
+            Canvas.CELL_SIZE
+          );
           ctx.fillStyle = grid.grid[i][j].isAlive ? "red" : "white";
-          ctx.fillRect(20 * j + 2, 20 * i + 2, 16, 16);
+          ctx.fillRect(
+            Canvas.CELL_SIZE * j + 2,
+            Canvas.CELL_SIZE * i + 2,
+            Canvas.CELL_SIZE - 4,
+            Canvas.CELL_SIZE - 4
+          );
         }
       }
     }

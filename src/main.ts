@@ -5,7 +5,7 @@ import { Canvas } from "./view/Canvas";
 const canvas = document.getElementById("fields") as HTMLCanvasElement | null;
 
 if (canvas) {
-  const game = new Game(500, 500, new Canvas(500, 500, canvas));
+  const game = new Game(50, 50, new Canvas(50, 50, canvas));
 
   game.start();
 }

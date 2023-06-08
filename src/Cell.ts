@@ -1,3 +1,5 @@
+import { Grid } from "./Grid";
+
 class Cell {
   isAlive: boolean = false;
   col: number;
@@ -8,31 +10,54 @@ class Cell {
     this.row = row;
     this.isAlive = isAlive;
   }
-  countNeighbours(grid: Cell[][]) {
+
+  countNeighbours(grid: Grid) {
     let counter = 0;
 
-    if (this.col - 1 > -1 && grid[this.row][this.col - 1].isAlive) {
+    if (this.col - 1 > -1 && grid.grid[this.row][this.col - 1].isAlive) {
       counter++;
     }
-    if (this.col + 1 < 10 &&  grid[this.row][this.col + 1].isAlive) {
+    if (
+      this.col + 1 < grid.width &&
+      grid.grid[this.row][this.col + 1].isAlive
+    ) {
       counter++;
     }
-    if (this.row + 1 < 10 && grid[this.row + 1][this.col].isAlive) {
+    if (
+      this.row + 1 < grid.height &&
+      grid.grid[this.row + 1][this.col].isAlive
+    ) {
       counter++;
     }
-    if (this.row - 1 > -1 && grid[this.row - 1][this.col].isAlive) {
+    if (this.row - 1 > -1 && grid.grid[this.row - 1][this.col].isAlive) {
       counter++;
     }
-    if (this.col - 1 > -1 && this.row + 1 < 10 && grid[this.row + 1][this.col - 1].isAlive) {
+    if (
+      this.col - 1 > -1 &&
+      this.row + 1 < grid.height &&
+      grid.grid[this.row + 1][this.col - 1].isAlive
+    ) {
       counter++;
     }
-    if (this.col + 1 < 10 && this.row + 1 < 10 && grid[this.row + 1][this.col + 1].isAlive) {
+    if (
+      this.col + 1 < grid.width &&
+      this.row + 1 < grid.height &&
+      grid.grid[this.row + 1][this.col + 1].isAlive
+    ) {
       counter++;
     }
-    if (this.row - 1 > -1 && this.col - 1 > -1 && grid[this.row - 1][this.col - 1].isAlive) {
+    if (
+      this.row - 1 > -1 &&
+      this.col - 1 > -1 &&
+      grid.grid[this.row - 1][this.col - 1].isAlive
+    ) {
       counter++;
     }
-    if (this.row - 1 > -1 && this.col + 1 < 10 && grid[this.row - 1][this.col + 1].isAlive) {
+    if (
+      this.row - 1 > -1 &&
+      this.col + 1 < grid.width &&
+      grid.grid[this.row - 1][this.col + 1].isAlive
+    ) {
       counter++;
     }
 

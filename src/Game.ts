@@ -18,7 +18,7 @@ class Game {
         that.grid.tick();
         that.view.render(that.grid);
         loop();
-      }, 1000 / 30);
+      }, 1000 / 10);
     })();
 
     this.grid;

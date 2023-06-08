@@ -2,8 +2,8 @@ import { Cell } from "./Cell";
 
 class Grid {
   public grid: Cell[][] = [];
-  private width: number;
-  private height: number;
+  public width: number;
+  public height: number;
 
   constructor(width: number, height: number) {
     this.width = width;
@@ -33,7 +33,7 @@ class Grid {
       if (!newGrid[y]) newGrid[y] = [];
       for (let x = 0; x < this.width; x++) {
         const currentCell = this.grid[y][x];
-        const counter = currentCell.countNeighbours(this.grid);
+        const counter = currentCell.countNeighbours(this);
         let isAlive = false;
         if (currentCell.isAlive) {
           if (counter === 2 || counter === 3) {
