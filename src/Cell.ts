@@ -1,9 +1,9 @@
 import { Grid } from "./Grid";
 
 class Cell {
-  isAlive: boolean = false;
-  col: number;
-  row: number;
+  public isAlive: boolean = false;
+  private col: number;
+  private row: number;
 
   constructor(col: number, row: number, isAlive: boolean) {
     this.col = col;
@@ -11,7 +11,7 @@ class Cell {
     this.isAlive = isAlive;
   }
 
-  countNeighbours(grid: Grid) {
+  public countNeighbours(grid: Grid) {
     let counter = 0;
 
     if (this.col - 1 > -1 && grid.grid[this.row][this.col - 1].isAlive) {
