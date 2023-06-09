@@ -5,8 +5,8 @@ class Game {
   private grid: Grid;
   private view: View;
 
-  constructor(width: number, height: number, view: View) {
-    this.grid = new Grid(width, height);
+  constructor(grid: Grid, view: View) {
+    this.grid = grid;
     this.view = view;
   }
 
@@ -18,10 +18,8 @@ class Game {
         that.grid.tick();
         that.view.render(that.grid);
         loop();
-      }, 1000 / 10);
+      }, 1000 / 30);
     })();
-
-    this.grid;
   };
 }
 

@@ -26,14 +26,42 @@ class Grid {
     }
   }
 
+  public countNeighbours(x: number, y: number) {
+    const neighbours = [
+      [x - 1, y],
+      [x + 1, y],
+      [x, y + 1],
+      [x, y - 1],
+      [x - 1, y + 1],
+      [x - 1, y - 1],
+      [x + 1, y + 1],
+      [x + 1, y - 1],
+    ];
+
+    let counter = neighbours.reduce((prev, [x, y]) => {
+      let col = x;
+      let row = y;
+      if (x < 0) col = this.width - 1;
+      if (x > this.width - 1) col = 0;
+      if (y < 0) row = this.height - 1;
+      if (y > this.height - 1) row = 0;
+
+      if (this.grid[row][col].isAlive) return prev + 1;
+      return prev;
+    }, 0);
+
+    return counter;
+  }
+
   public tick = () => {
     const newGrid: Cell[][] = [];
-    
+
     for (let y = 0; y < this.height; y++) {
       if (!newGrid[y]) newGrid[y] = [];
       for (let x = 0; x < this.width; x++) {
         const currentCell = this.grid[y][x];
-        const counter = currentCell.countNeighbours(this);
+        const counter = this.countNeighbours(x, y);
+        // console.log(counter);
         let isAlive = false;
         if (currentCell.isAlive) {
           if (counter === 2 || counter === 3) {

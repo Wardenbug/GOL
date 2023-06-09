@@ -1,4 +1,3 @@
-import { Cell } from "../Cell";
 import { Grid } from "../Grid";
 import { View } from "./View";
 
@@ -14,11 +13,15 @@ class Canvas extends View {
     this.width = width;
     this.height = height;
     this.canvas = canvasElement;
-    this.canvas.width = width * Canvas.CELL_SIZE
-    this.canvas.height = height * Canvas.CELL_SIZE
+    this.canvas.width = width * Canvas.CELL_SIZE;
+    this.canvas.height = height * Canvas.CELL_SIZE;
 
     // this.canvas.addEventListener("mousemove", this.getCursorPosition);
   }
+
+  setWidth() {}
+  setHeight() {}
+  setCellSize() {}
 
   public getCursorPosition(event: MouseEvent) {
     const rect = this.canvas.getBoundingClientRect();
