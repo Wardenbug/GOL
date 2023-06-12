@@ -26,6 +26,12 @@ class Grid {
     }
   }
 
+  public getCell(x: number, y: number) {
+    return this.grid[y][x];
+  }
+
+  public updateCell(x: number, y: number) {}
+
   public countNeighbours(x: number, y: number) {
     const neighbours = [
       [x - 1, y],
@@ -61,7 +67,6 @@ class Grid {
       for (let x = 0; x < this.width; x++) {
         const currentCell = this.grid[y][x];
         const counter = this.countNeighbours(x, y);
-        // console.log(counter);
         let isAlive = false;
         if (currentCell.isAlive) {
           if (counter === 2 || counter === 3) {
